@@ -1,0 +1,51 @@
+syntax = "proto3";
+   package task;
+   option go_package = "github.com/AleksKAG/project-protos/proto";
+
+   // Сущность задача
+   message Task {
+     uint32 id      = 1;
+     string title   = 2;
+   }
+
+   // Запрос на создание
+   message CreateTaskRequest {
+     string title = 1;
+   }
+   message CreateTaskResponse {
+     Task task = 1;
+   }
+
+   // Запрос на обновление
+   message UpdateTaskRequest {
+     uint32 id    = 1;
+     string title = 2;
+   }
+   message UpdateTaskResponse {
+     Task task = 1;
+   }
+
+   // Запрос на удаление
+   message DeleteTaskRequest {
+     uint32 id = 1;
+   }
+   message DeleteTaskResponse {
+     bool success = 1;
+   }
+
+   // Запрос на получение списка задач
+   message ListTasksRequest {
+     uint32 page = 1;
+     uint32 page_size = 2;
+   }
+   message ListTasksResponse {
+     repeated Task tasks = 1;
+   }
+
+   service TaskService {
+     rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+     rpc GetTask (Task) returns (Task);
+     rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
+     rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
+     rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
+   }
