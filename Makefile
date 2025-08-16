@@ -1,4 +1,4 @@
-PROTOS := proto/*.proto
+PROTOS := proto/user/*.proto proto/task/*.proto
    OUT_DIR := .
 
 install:
