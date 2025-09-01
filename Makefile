@@ -6,10 +6,10 @@ install:
 	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
 generate:
-	protoc \
-	  --go_out=$(OUT_DIR) --go_opt=paths=source_relative \
-	  --go-grpc_out=$(OUT_DIR) --go-grpc_opt=paths=source_relative \
-	  $(PROTOS)
+    protoc \
+        --go_out=. --go_opt=paths=source_relative \
+        --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+        proto/user/*.proto proto/task/*.proto
 
 clean:
 	del /s *.pb.go

@@ -2,50 +2,69 @@ syntax = "proto3";
 package task;
 option go_package = "github.com/AleksKAG/project-protos/proto/task";
 
-// Сущность задача
+import "proto/user/user.proto";
+
 message Task {
-  uint32 id      = 1;
-  string title   = 2;
+    uint32 id = 1;
+    uint32 user_id = 2;
+    string title = 3;
+    bool is_done = 4;
 }
 
-// Запрос на создание
 message CreateTaskRequest {
-  string title = 1;
+    uint32 user_id = 1;
+    string title = 2;
 }
 message CreateTaskResponse {
-  Task task = 1;
+    Task task = 1;
 }
 
-// Запрос на обновление
+message GetTaskRequest {
+    uint32 id = 1;
+}
+message GetTaskResponse {
+    Task task = 1;
+}
+
 message UpdateTaskRequest {
-  uint32 id    = 1;
-  string title = 2;
+    uint32 id = 1;
+    uint32 user_id = 2;
+    string title = 3;
+    bool is_done = 4;
 }
 message UpdateTaskResponse {
-  Task task = 1;
+    Task task = 1;
 }
 
-// Запрос на удаление
 message DeleteTaskRequest {
-  uint32 id = 1;
+    uint32 id = 1;
 }
 message DeleteTaskResponse {
-  bool success = 1;
+    bool success = 1;
 }
 
-// Запрос на получение списка задач
 message ListTasksRequest {
-  uint32 page = 1;
-  uint32 page_size = 2;
+    uint32 page = 1;
+    uint32 page_size = 2;
 }
 message ListTasksResponse {
-  repeated Task tasks = 1;
+    repeated Task tasks = 1;
+}
+
+message ListTasksByUserRequest {
+    uint32 user_id = 1;
+    uint32 page = 2;
+    uint32 page_size = 3;
+}
+message ListTasksByUserResponse {
+    repeated Task tasks = 1;
 }
 
 service TaskService {
-  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
-  rpc GetTask (Task) returns (Task);
-  rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
-  rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
-  rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
+    rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+    rpc GetTask (GetTaskRequest) returns (GetTaskResponse);
+    rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
+    rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
+    rpc ListTasks (ListTasksRequest) returns (ListTasksResponse);
+    rpc ListTasksByUser (ListTasksByUserRequest) returns (ListTasksByUserResponse);
 }

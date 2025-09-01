@@ -21,7 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// Сущность пользователь
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -74,7 +73,6 @@ func (x *User) GetEmail() string {
 	return ""
 }
 
-// Запрос на создание
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
@@ -163,7 +161,6 @@ func (x *CreateUserResponse) GetUser() *User {
 	return nil
 }
 
-// Запрос на обновление
 type UpdateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -260,7 +257,6 @@ func (x *UpdateUserResponse) GetUser() *User {
 	return nil
 }
 
-// Запрос на удаление
 type DeleteUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -349,7 +345,6 @@ func (x *DeleteUserResponse) GetSuccess() bool {
 	return false
 }
 
-// Запрос на получение списка пользователей
 type ListUsersRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          uint32                 `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
