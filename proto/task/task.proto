@@ -6,13 +6,13 @@ import "proto/user/user.proto";
 
 message Task {
     uint32 id = 1;
-    uint32 user_id = 2;
+    uint32 user_id = 2 [json_name = "userId"];
     string title = 3;
     bool is_done = 4;
 }
 
 message CreateTaskRequest {
-    uint32 user_id = 1;
+    uint32 user_id = 1 [json_name = "userId"];
     string title = 2;
 }
 message CreateTaskResponse {
@@ -28,7 +28,7 @@ message GetTaskResponse {
 
 message UpdateTaskRequest {
     uint32 id = 1;
-    uint32 user_id = 2;
+    uint32 user_id = 2 [json_name = "userId"];
     string title = 3;
     bool is_done = 4;
 }
@@ -52,7 +52,7 @@ message ListTasksResponse {
 }
 
 message ListTasksByUserRequest {
-    uint32 user_id = 1;
+    uint32 user_id = 1 [json_name = "userId"];
     uint32 page = 2;
     uint32 page_size = 3;
 }
